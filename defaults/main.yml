@@ -1,0 +1,4 @@
+# file: reboot/defaults/main.yml
+# synopsis: 
+---
+reboot_forced: false

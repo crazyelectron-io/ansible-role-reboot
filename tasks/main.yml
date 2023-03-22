@@ -1,0 +1,13 @@
+# file: roles/reboot/tasks/main.yaml
+# synopsis: reboot if needed (or forced)
+---
+- name: Check if reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+    get_md5: no
+  register: reboot_required_file
+
+- name: Reboot the nodes (if required)
+  reboot:
+    post_reboot_delay: 10
+  when: (reboot_required_file.stat.exists == true) or (reboot_forced is defined and reboot_forced)
