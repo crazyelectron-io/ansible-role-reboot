@@ -4,7 +4,6 @@
 - name: Check if reboot is required
   ansible.builtin.stat:
     path: /var/run/reboot-required
-    get_md5: no
   register: reboot_required_file
 
 - name: Reboot the nodes (if required)
